@@ -39,3 +39,18 @@ for ( countryCur in countries )
         )
 }
 ```
+
+Now we want to calculate the mean, min, and max life expectancies for each continent.
+
+```{r}
+
+for ( countryCur in countries )
+{
+  tmp <- gap.subset %>% 
+  select( lifeExp, country ) %>%
+  filter( country == countryCur ) %>%
+  summarise( mean = mean( lifeExp ) )
+  
+  print( paste( "Mean life expectancy for ", countryCur, "is", tmp$mean ) )
+}
+```
