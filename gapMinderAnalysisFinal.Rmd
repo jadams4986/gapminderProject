@@ -43,14 +43,12 @@ for ( countryCur in countries )
 Now we want to calculate the mean, min, and max life expectancies for each continent.
 
 ```{r}
+tmp <- gap.in %>% 
+  select( lifeExp, continent ) %>%
+  group_by( continent ) %>%
+  summarise( mean = mean( lifeExp ), min = min( lifeExp ), max = max( lifeExp ) )
 
-for ( countryCur in countries )
-{
-  tmp <- gap.subset %>% 
-  select( lifeExp, country ) %>%
-  filter( country == countryCur ) %>%
-  summarise( mean = mean( lifeExp ) )
-  
-  print( paste( "Mean life expectancy for ", countryCur, "is", tmp$mean ) )
-}
+print( tmp )
 ```
+
+Now we want to create a histogram of the global life expectancies 
