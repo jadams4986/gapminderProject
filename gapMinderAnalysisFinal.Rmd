@@ -1,0 +1,41 @@
+---
+title: "gapMinderAnalysisFinal"
+author: "Jesse Adams"
+date: "10/04/2015"
+output: html_document
+---
+
+```{r, echo = FALSE}
+library( "dplyr" )
+```
+
+Here's code to load the file for the countries New Zealand, Sierra Leone, and United States.
+
+```{r}
+gap.in <- read.table( "output/combined_gapMinder.tsv", sep = "\t", header = TRUE )
+
+gap.subset <- subset( gap.in, country == "United States" | country == "Sierra Leone" | country == "New Zealand" )
+
+gap.subset
+```
+
+For each country, we want to plot GDP vs year.
+
+```{r}
+countries <- list( "New Zealand", "Sierra Leone", "United States" )
+
+for ( countryCur in countries )
+{
+  tmp <- gap.subset %>%
+    filter( country == countryCur ) 
+  
+  plot( tmp[[ "year" ]], tmp[[ "gdpPercap" ]],
+        pch = 20,
+        col = "blue", 
+        main = paste( "Year vs. GDP per Capita for", countryCur ), # paste0() adds no space between strings
+        xlab = "Year",
+        ylab = "GDP per Capita", 
+        cex = tmp$pop/min(tmp$pop),
+        )
+}
+```
