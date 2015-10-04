@@ -2,8 +2,30 @@
 title: "gapminderAnalysesDemo"
 author: "Jesse Adams"
 date: "10/4/2015"
-output: html_document
+output: pdf_document
 ---
+
+```{r}
+install.packages("dplyr")
+library( "dplyr" )
+```
+
+
+```{r read-in-data}
+gap.in <- read.table( "output/combined_gapMinder.tsv", sep = "\t", header = TRUE )
+
+gap.in %>% 
+  select( year, pop, country, continent ) %>%
+  filter( year == 2002 ) %>%
+  group_by( continent ) %>%
+  summarise( mean = mean( pop ) )
+
+gap.in %>%
+  select( country, continent ) %>%
+  group_by( continent ) 
+```
+
+\newcommand{\R}[2]{\mathbb{R}^{#1}_{#2}}
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -20,3 +42,9 @@ plot(cars)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Here's a \LaTeX  equation:
+\begin{align*}
+f(x) &= \frac{ a + b }{ c - \frac{ d }{ 2 } } \\
+\R{3}{a}
+\end{align*}
