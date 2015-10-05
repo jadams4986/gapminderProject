@@ -29,7 +29,7 @@ for ( countryCur in countries )
   tmp <- gap.subset %>%
     filter( country == countryCur ) 
   
-  plot( tmp[[ "year" ]], tmp[[ "gdpPercap" ]],
+  plot( tmp$year, tmp$gdpPercap,
         pch = 20,
         col = "blue", 
         main = paste( "Year vs. GDP per Capita for", countryCur ), # paste0() adds no space between strings

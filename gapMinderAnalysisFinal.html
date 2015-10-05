@@ -120,7 +120,7 @@ for ( countryCur in countries )
   tmp &lt;- gap.subset %&gt;%
     filter( country == countryCur ) 
   
-  plot( tmp[[ &quot;year&quot; ]], tmp[[ &quot;gdpPercap&quot; ]],
+  plot( tmp$year, tmp$gdpPercap,
         pch = 20,
         col = &quot;blue&quot;, 
         main = paste( &quot;Year vs. GDP per Capita for&quot;, countryCur ), # paste0() adds no space between strings
